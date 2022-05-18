@@ -21,6 +21,13 @@
         <div>
             <label for="romano">Número Romano: </label>
             <input type="text" name="romano" id="romano">
+            <?php
+            if ($error_vacio) {
+                echo '<span>*CAMPO OBLIGATORIO*</span>';
+            } else if ($errorLetras) {
+                echo '<span>*INTRODUCE SOLO LOS CARACTERES PERMITIDOS*</span>';
+            }
+            ?>
         </div>
         <button name='btnEnviar' type="submit">Enviar</button>
     </form>
