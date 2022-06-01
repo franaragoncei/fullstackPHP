@@ -1,14 +1,15 @@
 <?php
-
-if(isset($_POST['btnEditar'])){
+if (isset($_POST['editar'])) {
     $nombre = $_POST['nombre'];
-    $apellido = $_POST['apellidos'];
-    $id = $_POST['alumnoEditar'];
-    $sql = 'UPDATE alumnos SET nombre=?, apellidos=? WHERE id=?';
+    $precio = $_POST['precio'];
+    $codigoFabricante = $_POST['nombreFabricante'];
+    $codigoProducto = $_POST['editarID'];
+
+    $sql = 'UPDATE producto set nombre=?, precio=?, codigo_fabricante=? where codigo=?';
 
     try{
-        $connection->prepare($sql)->execute([$nombre, $apellido, $id]);
+        $connection->prepare($sql)->execute([$nombre, $precio, $codigoFabricante, $codigoProducto]);
     }catch(Exception $error){
-        echo 'Lo sentimos, algo ha fallado.';
+        echo $error;
     }
 }

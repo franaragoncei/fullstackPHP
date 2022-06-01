@@ -7,38 +7,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        input,
+        div,
         button,
-        a, select {
+        a {
             margin: .5rem;
+        }
+
+        #editarID {
+            display: none;
         }
     </style>
 </head>
 
 <body>
-    <h1>EDITAR ALUMNOS</h1>
-    <form action="../index.php" method="POST">
-        <?php
-        require_once '../db/connection.php';
-        include 'select.php';
-        echo '<select name="alumnoEditar">';
-        foreach ($alumnos as $alumno) {
-            echo '<option value="'.$alumno['id'].'">' . $alumno['id'] . ': ' . $alumno['nombre'] . ' ' . $alumno['apellidos'] .'</option>';
-        }
-        echo '</select>';
-        ?>
+    <h1>EDITANDO PRODUCTO <?php echo $_POST['editarID']; ?></h1>
+    <form action="../index.php" method="post">
+        <input id='editarID' name='editarID' type="text" value="<?php echo $_POST['editarID']; ?>">
         <div>
-            <div>
-                <input name="nombre" placeholder="Introduce el nombre">
-            </div>
-            <div>
-                <input name="apellidos" placeholder="Introduce el apellido">
-            </div>
-            <button name="btnEditar">Editar</button>
+            <input required value="<?php echo $_POST['editarNombre']; ?>" type="text" name="nombre" placeholder="<?php echo $_POST['editarNombre']; ?>">
         </div>
+        <div>
+            <input required value="<?php echo $_POST['editarPrecio']; ?>" type="text" name="precio" placeholder="<?php echo $_POST['editarPrecio']; ?>€">
+        </div>
+        <div>
+            <select name="nombreFabricante" id="nombreFabricante">
+                <?php
+                require_once '../db/connection.php';
+                include 'select.php';
+                foreach ($fabricantes as $fabricante) {
+                    if ($fabricante['codigo'] == $_POST['editarCodigoFabricante']) {
+                        echo '<option selected value="' . $fabricante['codigo'] . '">' . $fabricante['nombre'] . '</option>';
+                    } else {
+                        echo '<option value="' . $fabricante['codigo'] . '">' . $fabricante['nombre'] . '</option>';
+                    }
+                }
+                ?>
+            </select>
+        </div>
+        <button name='editar' id="editar">EDITAR</button>
     </form>
-
-    <a href="../index.php">Volver al listado</a>
+    <a href="../index.php">Volver al HOME</a>
 </body>
 
 </html>

@@ -1,14 +1,15 @@
 <?php
 
-if (isset($_POST['btnAdd'])) {
+if (isset($_POST['insertar'])) {
     $nombre = $_POST['nombre'];
-    $apellido = $_POST['apellidos'];
+    $precio = $_POST['precio'];
+    $nombreFabricante = $_POST['nombreFabricante'];
 
-    $sql = 'INSERT INTO alumnos (nombre, apellidos) VALUES (?,?)';
+    $sql = 'INSERT INTO producto (nombre, precio, codigo_fabricante) VALUES (?,?,?)';
 
     try{
-        $connection->prepare($sql)->execute([$nombre, $apellido]);
+        $connection->prepare($sql)->execute([$nombre, $precio, $nombreFabricante]);
     }catch(Exception $error){
-        echo '<p>Lo sentimos, algo ha fallado.</p>';
+        echo $error;
     }
 }
