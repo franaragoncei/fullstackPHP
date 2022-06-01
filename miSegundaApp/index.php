@@ -54,7 +54,7 @@
                 echo '<td><form action="pages/editarForm.php" method="POST"><button value="' . $producto['codigoProducto'] . '" name="editarID">EDITAR</button><input class="oculto" name="editarNombre" value="' . $producto['nombre'] . '">
                 <input class="oculto" name="editarPrecio" value="' . $producto['precio'] . '">
                 <input class="oculto" name="editarCodigoFabricante" value="' . $producto['codigo'] . '"></form></td>';
-                echo '<td><form action="index.php" method="POST"><button value="' . $producto['codigoProducto'] . '" name="borrarID">BORRAR</button></form></td>';
+                echo '<td><form action="index.php" method="POST"><button value="' . $producto['codigoProducto'] . '" name="borrarID" id="borrarID">BORRAR</button></form></td>';
                 echo '</tr>';
             }
         }
