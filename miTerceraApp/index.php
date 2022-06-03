@@ -15,6 +15,10 @@
             border-collapse: collapse;
             padding: .3rem;
         }
+
+        .oculto {
+            display: none;
+        }
     </style>
 </head>
 
@@ -26,6 +30,7 @@
         // echo '<p>Conexion satisfactoria</p>';
         include 'pages/borrar.php';
         include 'pages/insertar.php';
+        include 'pages/editar.php';
         include 'pages/select.php';
         // TABLA DONDE SE MUESTRAN LOS RESULTADOS
         echo '<table>';
@@ -36,6 +41,8 @@
         echo '<th>FECHA</th>';
         echo '<th>NOMBRE COMERCIAL</th>';
         echo '<th>BORRAR</th>';
+        echo '<th>EDITAR PEDIDO</th>';
+        echo '<th>EDITAR CLIENTE</th>';
         echo '</tr>';
         foreach ($datos as $dato) {
             echo '<tr>';
@@ -45,6 +52,21 @@
             echo '<td>' . $dato['fecha'] . '</td>';
             echo '<td>' . $dato['nombreComercial'] . '</td>';
             echo '<td><form action="index.php" method="post"><button value="' . $dato['id'] . '" name="btnBorrar">BORRAR</button></form></td>';
+            echo '<td><form action="pages/editarForm.php" method="post">
+            <button name="editarPedido" value="' . $dato['id'] . '">EDITAR</button>
+            <input class="oculto" type="text" value="' . $dato['cantidad'] . '" name="cantidadPedido">
+            <input class="oculto" type="text" value="' . $dato['fecha'] . '" name="fechaPedido">
+            <input class="oculto" type="text" value="' . $dato['idCliente'] . '" name="idClientePedido">
+            <input class="oculto" type="text" value="' . $dato['idComercial'] . '" name="idComercialPedido">
+        </form></td>';
+            echo '<td><form action="pages/editarForm2.php" method="post">
+        <button name="editarClienteID" value="' . $dato['idCliente'] . '">EDITAR CLIENTE</button>
+        <input class="oculto" type="text" name="editarNombre" value="' . $dato['nombre'] . '">
+        <input class="oculto" type="text" name="editarApellido1" value="' . $dato['apellido1'] . '">
+        <input class="oculto" type="text" name="editarApellido2" value="' . $dato['apellido2'] . '">
+        <input class="oculto" type="text" name="editarCiudad" value="' . $dato['ciudad'] . '">
+        <input class="oculto" type="text" name="editarCategoria" value="' . $dato['categoria'] . '">
+    </form></td>';
             echo '</tr>';
         }
         echo '</table>';
