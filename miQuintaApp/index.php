@@ -21,19 +21,41 @@
 
         h1 {
             font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            font-weight: 100;
+            letter-spacing: .5rem;
         }
 
         input,
         button {
             margin: .5rem;
         }
+
+        input {
+            background-color: transparent;
+            border: 0;
+            border-bottom: 1px solid white;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        input::placeholder {
+            color: white;
+            letter-spacing: .2rem;
+        }
+
+        span {
+            
+        }
     </style>
 </head>
 
 <body>
-    <h1>CEISBOOK</h1>
+    <h1>CEI<span>S</span>BOOK</h1>
     <?php
-    include 'db/connection.php';
+    require 'db/connection.php';
     require 'pages/registrar.php';
     ?>
     <form method='POST' action="pages/login.php">
