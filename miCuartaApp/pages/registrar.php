@@ -5,11 +5,17 @@ if (isset($_POST['registrar'])) {
     $usuario = $_POST['usuario'];
     $pass = $_POST['pass'];
 
-    $sql = 'INSERT INTO usuarios (nombre, apellido, usuario, pass) values (?,?,?,?)';
+    $miUsuario = $connection->query('SELECT * FROM usuarios where usuario="' . $usuario . '"')->fetchAll();
 
-    try {
-        $connection->prepare($sql)->execute([$nombre, $apellido, $usuario, md5($pass)]);
-    } catch (Exception $error) {
-        header('Location: pages/error.php');
+    if (count($miUsuario) > 0) {
+        $_SESSION['errorUsuario'] = true;
+        header('Location: pages/registrarseForm.php');
+    } else {
+        $sql = 'INSERT INTO usuarios (nombre, apellido, usuario, pass) values (?,?,?,?)';
+        try {
+            $connection->prepare($sql)->execute([$nombre, $apellido, $usuario, md5($pass)]);
+        } catch (Exception $error) {
+            header('Location: pages/error.php');
+        }
     }
 }

@@ -35,6 +35,13 @@
         <input required type="password" placeholder="contraseña" name="pass">
         <button name="registrar">REGISTRAR</button>
     </form>
+    <?php
+    include '../db/connection.php';
+    if($_SESSION['errorUsuario']){
+        echo '<p>Creo que el usuario ya está cogido</p>';
+        session_destroy();
+    }
+    ?>
     <a href="../index.php">Volver al HOME</a>
 </body>
 </html>

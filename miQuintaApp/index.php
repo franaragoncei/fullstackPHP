@@ -46,9 +46,7 @@
             letter-spacing: .2rem;
         }
 
-        span {
-            
-        }
+     
     </style>
 </head>
 
@@ -63,6 +61,11 @@
         <input placeholder="Contraseña" type="password" name="pass" required>
         <button name="acceder">ACCEDER</button>
     </form>
+    <?php
+        if($_SESSION['error']){
+            echo '<p>¿Has olvidado el usuario o la contraseña?. Mala suerte :(</p>';
+        }
+    ?>
     <a href="pages/registrarseForm.php">REGISTRATE</a>
 </body>
 
